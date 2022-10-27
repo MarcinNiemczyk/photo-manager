@@ -5,6 +5,7 @@
 	- [Endpoints](#endpoints)
 - [Business logic](#logic)
 - [Import from external API](#external)
+	- [Disclaimer](#disclaimer)
 - [Import from JSON File](#file)
 
 
@@ -75,6 +76,13 @@ Located in `services.py` contains two functions that are used within serializati
 
 ### Import photos from external API <a name="external"></a>
 To import photos from external API via CLI use `python manage.py loadexternal <url>`
+
+#### Disclaimer <a name="disclaimer"></a>
+Some image files might not download properly due to unknown causes.
+
+Files from `https://jsonplaceholder.typicode.com/photos` are one of those files and `requests` library cannot handle them.
+
+BUT most of the files save properly like the one from example above.
 
 ### Import photos from JSON File <a name="file"></a>
 To import photos from JSON File to database use `python manage.py loadfile <filename.json>`
