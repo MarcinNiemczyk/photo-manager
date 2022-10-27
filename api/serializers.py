@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Photo
-from .services import download_image
+from .services import download_image, get_dominant_color
 
 
 class PhotoSerializer(serializers.ModelSerializer):
@@ -30,7 +30,10 @@ class PhotoSerializer(serializers.ModelSerializer):
     def fill_data(self, instance, validated_data):
         url = validated_data['url']
         filename = download_image(url)
+        color = get_dominant_color(filename)
+
         instance.title = validated_data['title']
         instance.album_id = validated_data['album_id']
         instance.image.name = filename
+        instance.color = color
         return instance
