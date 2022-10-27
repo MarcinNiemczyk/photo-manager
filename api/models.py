@@ -12,4 +12,4 @@ class Photo(models.Model):
         validators=[RegexValidator(r"^#(?:[0-9a-fA-F]{3}){1,2}$")],
         help_text="Dominant color as hex code"
     )
-    image = models.ImageField()
+    image = models.ImageField(height_field="height", width_field="width")
