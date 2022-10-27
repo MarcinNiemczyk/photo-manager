@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 import os
 import json
 from django.conf import settings
-from api.serializers import PhotoSerializer
+from ._private import store_data
 
 
 class Command(BaseCommand):
@@ -14,6 +14,4 @@ class Command(BaseCommand):
         with open(file, 'r') as f:
             data = f.read()
             data = json.loads(data)
-        serializer = PhotoSerializer(data=data, many=True)
-        if serializer.is_valid():
-            serializer.save()
+        store_data(data)
