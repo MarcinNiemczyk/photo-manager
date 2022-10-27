@@ -17,12 +17,20 @@ class PhotoSerializer(serializers.ModelSerializer):
         return obj.image.url
 
     def create(self, validated_data):
-        url = validated_data['url']
-        filename = download_image(url)
-
         photo = Photo()
-        photo.title = validated_data['title']
-        photo.album_id = validated_data['album_id']
-        photo.image.name = filename
+        photo = self.fill_data(photo, validated_data)
         photo.save()
         return photo
+
+    def update(self, instance, validated_data):
+        instance = self.fill_data(instance, validated_data)
+        instance.save()
+        return instance
+
+    def fill_data(self, instance, validated_data):
+        url = validated_data['url']
+        filename = download_image(url)
+        instance.title = validated_data['title']
+        instance.album_id = validated_data['album_id']
+        instance.image.name = filename
+        return instance

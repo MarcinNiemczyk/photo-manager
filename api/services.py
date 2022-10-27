@@ -10,3 +10,4 @@ def download_image(url):
     with open(path, 'wb') as f:
         f.write(image)
     return filename
+
