@@ -80,7 +80,7 @@ To import photos from external API via CLI use `python manage.py loadexternal <u
 #### Disclaimer <a name="disclaimer"></a>
 Some image files might not download properly due to unknown causes.
 
-Files from `https://jsonplaceholder.typicode.com/photos` are one of those files and `requests` library cannot handle them.
+Photos from API `https://jsonplaceholder.typicode.com/photos` urls are one of those files and `requests` library cannot handle them.
 
 BUT most of the files save properly like the one from example above.
 
