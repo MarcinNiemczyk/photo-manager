@@ -4,13 +4,13 @@ from .services import download_image, get_dominant_color
 
 
 class PhotoSerializer(serializers.ModelSerializer):
-
     image = serializers.SerializerMethodField('get_image_url')
     url = serializers.URLField(write_only=True, label='URL')
 
     class Meta:
         model = Photo
-        fields = ('id', 'title', 'albumId', 'width', 'height', 'color', 'image', 'url')
+        fields = (
+        'id', 'title', 'albumId', 'width', 'height', 'color', 'image', 'url')
         read_only_fields = ('width', 'height', 'color', 'image')
 
     def get_image_url(self, obj):
@@ -37,6 +37,7 @@ class PhotoSerializer(serializers.ModelSerializer):
         instance.image.name = filename
         instance.color = color
         return instance
+
 
 PhotoSerializer._declared_fields['albumId'] = serializers.IntegerField(
     source='album_id',
