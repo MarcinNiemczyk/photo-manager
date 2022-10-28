@@ -46,7 +46,7 @@ list all photos
 
 `/api/photos`
 
-display single post
+display single photo
 
 `/api/photos/<id>`
 
