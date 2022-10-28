@@ -16,26 +16,28 @@ class PhotoTestCase(TestCase):
             content=image_bytes,
             content_type='image/jpeg'
         )
-        Photo.objects.create(
+        self.photo = Photo.objects.create(
             title='foo',
             album_id=1,
             image=photo_image,
             color=get_dominant_color(photo_image.name)
         )
+        self.photo_expected_values = {
+            'title_length': 255,
+            'width': 1,
+            'height': 1,
+            'color': '#040404'
+        }
 
     def test_title_max_length(self):
-        photo = Photo.objects.get(id=1)
-        max_length = photo._meta.get_field('title').max_length
-        self.assertEqual(max_length, 255)
+        max_length = self.photo._meta.get_field('title').max_length
+        self.assertEqual(max_length, self.photo_expected_values['title_length'])
 
     def test_width_is_correct(self):
-        photo = Photo.objects.get(id=1)
-        self.assertEqual(photo.width, 1)
+        self.assertEqual(self.photo.width, self.photo_expected_values['width'])
 
     def test_height_is_correct(self):
-        photo = Photo.objects.get(id=1)
-        self.assertEqual(photo.height, 1)
+        self.assertEqual(self.photo.height, self.photo_expected_values['height'])
 
     def test_dominant_color_is_correct(self):
-        photo = Photo.objects.get(id=1)
-        self.assertEqual(photo.color, '#040404')
+        self.assertEqual(self.photo.color, self.photo_expected_values['color'])
