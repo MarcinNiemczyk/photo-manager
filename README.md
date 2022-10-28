@@ -7,6 +7,7 @@
 - [Import from external API](#external)
 	- [Disclaimer](#disclaimer)
 - [Import from JSON File](#file)
+- [Tools](#tools)
 
 
 ---
@@ -87,6 +88,9 @@ BUT most of the files save properly like the one from example above.
 ### Import photos from JSON File <a name="file"></a>
 To import photos from JSON File to database use `python manage.py loadfile <filename.json>`
 
-
-
-
+### Tools <a name="tools"></a>
+Libraries used:
+- Django
+- Django REST Framework
+- Requests
+- Colorthief
