@@ -9,7 +9,7 @@ class Photo(models.Model):
     height = models.PositiveSmallIntegerField(default=0)
     color = models.CharField(
         max_length=7,
-        validators=[RegexValidator(r"^#(?:[0-9a-fA-F]{3}){1,2}$")],
-        help_text="Dominant color as hex code"
+        validators=[RegexValidator(r'^#(?:[0-9a-fA-F]{3}){1,2}$')],
+        help_text='Dominant color as hex code'
     )
-    image = models.ImageField(height_field="height", width_field="width")
+    image = models.ImageField(height_field='height', width_field='width')

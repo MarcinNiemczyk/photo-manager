@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Photo
-from .services import download_image, get_dominant_color
+from api.models import Photo
+from api.services import download_image, get_dominant_color
 
 
 class PhotoSerializer(serializers.ModelSerializer):

@@ -1,10 +1,11 @@
 import os
 import requests
-from django.conf import settings
 from colorthief import ColorThief
+from django.conf import settings
 
 
 def download_image(url):
+    """Download image from given url and save it locally"""
     filename = url.split('/')[-1] + '.jpg'
     path = os.path.join(settings.MEDIA_ROOT, filename)
     image = requests.get(url).content
@@ -14,6 +15,7 @@ def download_image(url):
 
 
 def get_dominant_color(filename):
+    """Calculate image dominant color"""
     path = os.path.join(settings.MEDIA_ROOT, filename)
     image = ColorThief(path)
     dominant_color = image.get_color(quality=1)

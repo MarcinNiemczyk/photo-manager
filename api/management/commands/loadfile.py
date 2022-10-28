@@ -1,11 +1,12 @@
-from django.core.management.base import BaseCommand
 import os
 import json
 from django.conf import settings
-from ._private import store_data
+from django.core.management.base import BaseCommand
+from api.management.commands._private import store_data
 
 
 class Command(BaseCommand):
+    """Import photos from JSON file"""
     def add_arguments(self, parser):
         parser.add_argument('filename')
 
